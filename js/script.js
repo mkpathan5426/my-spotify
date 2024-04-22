@@ -31,24 +31,22 @@ async function getSongs(folder) {
             songs.push(element.href.split(`/${folder}/`)[1])
         }
     }
-
+ 
 
 
     // Show all the songs in the playlist
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
     songUL.innerHTML = ""
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li class="flex b-radius">
-        <img src="img/music.svg" alt="play">
-        <div class="info">
-            <div>${song.replaceAll("%20", " ")}</div>
-            <div>Pathan</div>
-        </div>
-        <div class="playbtn flex">
-            Play Now
-            <img src="img/play.png" alt="play">
-        </div>
-    </li>`;
+        songUL.innerHTML = songUL.innerHTML + `<li><img width="34" src="img/music.svg" alt="">
+                            <div class="info">
+                                <div> ${song.replaceAll("%20", " ")}</div>
+                                <div>Harry</div>
+                            </div>
+                            <div class="playnow flex">
+                                <span>Play Now</span>
+                                <img src="img/play.png" alt="">
+                            </div> </li>`;
     }
 
     // Attach an event listener to each song
@@ -99,7 +97,7 @@ async function displayAlbums() {
                 </svg>
             </div>
 
-            <img src="/songs/${folder}/cover.avif" alt="">
+            <img src="/songs/${folder}/cover.jpg" alt="">
             <h2>${response.title}</h2>
             <p>${response.description}</p>
         </div>`
@@ -186,23 +184,20 @@ async function main() {
     document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
         console.log("Setting volume to", e.target.value, "/ 100")
         currentSong.volume = parseInt(e.target.value) / 100
-        if (currentSong.volume <= 0){
-            document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("/img/volume.svg", "/img/mute.png")
-        }
-        else {
-            document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("/img/mute.png", "/img/volume.svg" )
+        if (currentSong.volume >0){
+            document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("mute.svg", "volume.svg")
         }
     })
 
     // Add event listener to mute the track
     document.querySelector(".volume>img").addEventListener("click", e=>{ 
         if(e.target.src.includes("volume.svg")){
-            e.target.src = e.target.src.replace("/img/volume.svg", "/img/mute.png")
+            e.target.src = e.target.src.replace("volume.svg", "mute.svg")
             currentSong.volume = 0;
             document.querySelector(".range").getElementsByTagName("input")[0].value = 0;
         }
         else{
-            e.target.src = e.target.src.replace("/img/mute.png", "/img/volume.svg")
+            e.target.src = e.target.src.replace("mute.svg", "volume.svg")
             currentSong.volume = .10;
             document.querySelector(".range").getElementsByTagName("input")[0].value = 10;
         }

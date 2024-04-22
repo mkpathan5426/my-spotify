@@ -82,7 +82,7 @@ body {
 }
 
 .songList {
-    height: 370px;
+    height: 500px;
     overflow: auto;
 }
 
@@ -183,7 +183,7 @@ button {
 }
 
 
-.spotifyPlaylist {
+.spotifyPlaylists {
     background-color: var(--third-color);
     margin: 5px;
     max-height: 75vh;
@@ -194,8 +194,14 @@ button {
     flex-wrap: wrap;
 }
 
-.spotifyPlaylist h2 {
-    padding: 10px;
+.cardContainer img {
+    height: 215px;
+    object-position: center;
+}
+
+.spotifyPlaylists h1 {
+    padding: 30px;
+    padding-bottom: 15px;
 }
 
 .cardContainer {
